@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .orange {
+        color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" placeholder="Search..." />
+    <button onclick="filter()">Filter</button>
+    <table>
+      <thead>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script>
+      const json = `[
+        {
+            "firstName": "John",
+            "lastName": "Doe"
+        },
+        {
+            "firstName": "Jane",
+            "lastName": "Smith"
+        },
+        {
+            "firstName": "Michael",
+            "lastName": "Johnson"
+        },
+        {
+            "firstName": "Emily",
+            "lastName": "Davis"
+        },
+        {
+            "firstName": "Daniel",
+            "lastName": "Brown"
+        },
+        {
+            "firstName": "Laura",
+            "lastName": "Miller"
+        },
+        {
+            "firstName": "David",
+            "lastName": "Wilson"
+        },
+        {
+            "firstName": "Sarah",
+            "lastName": "Taylor"
+        },
+        {
+            "firstName": "Chris",
+            "lastName": "Anderson"
+        },
+        {
+            "firstName": "Anna",
+            "lastName": "Thomas"
+        }
+        ]`;
+
+      const people = JSON.parse(json);
+
+      const tbody = document.getElementsByTagName("tbody")[0];
+      displayTbody(people);
+
+      const input = document.getElementsByTagName("input")[0];
+      function filter() {
+        const peopleFiltered = people.filter((person) => {
+          return (
+            person.firstName.includes(input.value) ||
+            person.lastName.includes(input.value)
+          );
+        });
+
+        tbody.innerHTML = "";
+        const regex = new RegExp(`(${input.value})`, "gi");
+        for (let i = 0; i < peopleFiltered.length; i++) {
+          const tr = document.createElement("tr");
+          const tdFirstName = document.createElement("td");
+          tdFirstName.innerHTML = peopleFiltered[i].firstName.replace(
+            regex,
+            `<mark>$1</mark>`
+          );
+/*
+          tdFirstName.innerHTML = peopleFiltered[i].firstName.replace(
+            regex,
+            `<span class="orange">$1</span>`
+          );
+*/
+          const tdLastName = document.createElement("td");
+
+          tdLastName.innerHTML = peopleFiltered[i].lastName.replace(
+            regex,
+            `<mark>$1</mark>`
+          );
+          
+/*
+          tdLastName.innerHTML = peopleFiltered[i].lastName.replace(
+            regex,
+            `<span style="color: orange;">$1</span>`
+          );
+*/
+          tr.appendChild(tdFirstName);
+          tr.appendChild(tdLastName);
+          tbody.appendChild(tr);
+        }
+      }
+
+      function displayTbody(people) {
+        for (let i = 0; i < people.length; i++) {
+          const tr = document.createElement("tr");
+          const tdFirstName = document.createElement("td");
+          tdFirstName.innerText = people[i].firstName;
+          const tdLastName = document.createElement("td");
+          tdLastName.innerText = people[i].lastName;
+          tr.appendChild(tdFirstName);
+          tr.appendChild(tdLastName);
+          tbody.appendChild(tr);
+        }
+      }
+    </script>
+  </body>
+</html>
