@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import "./Cart.css";
 import React from "react";
+import { clearCart, removeItem } from "./cartSlice";
 
 export function Cart() {
   const items = useSelector((state) => state.cart.items);
@@ -14,18 +15,12 @@ export function Cart() {
       <h1>Cart:</h1>
       {items.length > 0 ? (
         <>
-          <button onClick={() => dispatch({ type: "cart/clearCart" })}>
-            Clear cart
-          </button>
+          <button onClick={() => dispatch(clearCart())}>Clear cart</button>
           <ul>
             {items.map((item) => (
               <React.Fragment key={item.id}>
                 <li>{`${item.name} £${item.price} x${item.quantity}`}</li>
-                <button
-                  onClick={() =>
-                    dispatch({ type: "cart/removeItem", payload: item.id })
-                  }
-                >
+                <button onClick={() => dispatch(removeItem(item.id))}>
                   Remove
                 </button>
               </React.Fragment>
