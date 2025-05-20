@@ -1,0 +1,77 @@
+.weather-forecast-container {
+  display: flex;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.weather {
+  border: 2px solid black;
+  border-radius: 3px;
+  flex-grow: 1;
+  height: 300px;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather.hot {
+  background-color: rgba(255, 0, 0, 0.2);
+  animation-name: glow;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.weather.freezing {
+  background-color: rgba(0, 0, 255, 0.2);
+}
+
+.weather.mild {
+  background-color: rgba(255, 165, 0, 0.2);
+}
+
+.weather > .hot {
+  color: red;
+}
+
+.weather > .hot::after {
+  content: "🥵";
+}
+
+.weather > .freezing {
+  color: blue;
+}
+
+.weather > .freezing::after {
+  content: "🥶";
+}
+
+.weather > .mild {
+  color: orange;
+}
+
+@media (max-width: 430px) {
+  .weather-forecast-container {
+    flex-direction: column;
+  }
+
+  .weather {
+    width: 100%;
+  }
+}
+
+@keyframes glow {
+  0% {
+    border-color: black;
+  }
+
+  100% {
+    border-color: orange;
+  }
+}
+
+.weather > .temp::after {
+  content: "°C";
+}
