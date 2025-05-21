@@ -1,1 +1,1 @@
-# Weather Forecase Responsive Web Design (CSS + media queries + flexbox)
+# Weather Forecast Responsive Web Design (CSS + media queries + flexbox)
