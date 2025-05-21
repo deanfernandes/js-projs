@@ -1,0 +1,39 @@
+:root {
+  --bg-color-dark: black;
+  --bg-color-light: white;
+  --color-dark: white;
+  --color-light: black;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color-light);
+  color: var(--color-light);
+  transition: background-color 1s, color 2s;
+}
+
+body.dark {
+  background-color: var(--bg-color-dark);
+  color: var(--color-dark);
+}
+
+header h1 {
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 30px;
+}
+
+button {
+  background-color: inherit;
+  color: inherit;
+  font-size: 1.2em;
+}
