@@ -20,16 +20,17 @@ function bubbleSort(a) {
     swapped = false;
     for (let i = 1; i < n; i++) {
       if (sortedA[i - 1] > sortedA[i]) {
-        //TODO: create swap fn
-        let temp = sortedA[i - 1];
-        sortedA[i - 1] = sortedA[i];
-        sortedA[i] = temp;
+        swap(sortedA, i - 1, i);
         swapped = true;
       }
     }
   } while (swapped);
 
   return sortedA;
+}
+
+function swap(arr, i, j) {
+  [arr[i], arr[j]] = [arr[j], arr[i]];
 }
 
 module.exports = { binarySearch, bubbleSort };
