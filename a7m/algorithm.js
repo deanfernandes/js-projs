@@ -12,4 +12,24 @@ function binarySearch(a, t) {
   return -1;
 }
 
-module.exports = binarySearch;
+function bubbleSort(a) {
+  const sortedA = [...a];
+  const n = sortedA.length;
+  let swapped;
+  do {
+    swapped = false;
+    for (let i = 1; i < n; i++) {
+      if (sortedA[i - 1] > sortedA[i]) {
+        //TODO: create swap fn
+        let temp = sortedA[i - 1];
+        sortedA[i - 1] = sortedA[i];
+        sortedA[i] = temp;
+        swapped = true;
+      }
+    }
+  } while (swapped);
+
+  return sortedA;
+}
+
+module.exports = { binarySearch, bubbleSort };
