@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>css-in-js</title>
+  </head>
+  <body>
+    <header>
+      <h1>Header</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <p class="p">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse ea
+        doloremque quod dignissimos, natus optio, officia possimus fugit sed
+        fuga nam debitis nobis est minus ab dolore recusandae, nihil alias.
+      </p>
+    </main>
+    <footer>&copy; 2025-2025 css-in-js</footer>
+
+    <script>
+      //method 1: style tag
+      const style = document.createElement("style");
+      style.innerText = `
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+        }
+
+        header, footer {
+            background-color: #ccc;
+        }
+
+        footer {
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        ul li {
+            background-color: rgb(100, 100, 100);
+            padding: 10px;
+        }
+
+        ul li:hover {
+            background-color: rgb(130, 130, 130);
+            cursor:pointer;
+        }
+
+        a, a:visited, a:hover, a:active {
+            text-decoration: none;
+            color: inherit;
+        }
+      `;
+      document.head.appendChild(style);
+
+      //method 2: inline
+      document.getElementsByTagName("main")[0].style.margin = "0 150px ";
+    </script>
+  </body>
+</html>
