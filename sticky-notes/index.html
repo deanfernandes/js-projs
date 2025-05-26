@@ -59,6 +59,7 @@
 
     <script>
       const notes = [];
+      const MAX_NOTES = 3;
       class Note {
         constructor() {
           this.onMouseDown = this.onMouseDown.bind(this);
@@ -100,6 +101,10 @@
       }
 
       function onClickNewNote() {
+        if (notes.length == MAX_NOTES) {
+          alert("Ran out of paper :(");
+          return;
+        }
         notes.push(new Note());
       }
     </script>
