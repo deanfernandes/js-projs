@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sticky notes</title>
+    <style>
+      :root {
+        --bg-color: rgb(255, 255, 0);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .note {
+        width: 200px;
+        height: 200px;
+        background-color: var(--bg-color);
+        position: absolute;
+        display: flex;
+        justify-content: center;
+      }
+
+      .note:hover {
+        cursor: grab;
+      }
+
+      .note.grabbing {
+        cursor: -moz-grabbing;
+        cursor: grabbing;
+      }
+
+      .note textarea {
+        width: 150px;
+        height: 150px;
+        position: relative;
+        top: 50px;
+        resize: none;
+        background-color: inherit;
+        font-weight: bold;
+        border: none;
+      }
+
+      .note textarea:focus {
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      class Note {
+        constructor() {
+          this.onMouseDown = this.onMouseDown.bind(this);
+          this.onMouseUpLeave = this.onMouseUpLeave.bind(this);
+          this.onMouseMove = this.onMouseMove.bind(this);
+          this.note = document.createElement("div");
+          const textArea = document.createElement("textarea");
+          textArea.addEventListener("mousedown", (e) => e.stopPropagation());
+          this.note.appendChild(textArea);
+          this.note.classList.add("note");
+          document.body.appendChild(this.note);
+          this.note.addEventListener("mousedown", this.onMouseDown);
+        }
+
+        onMouseDown(e) {
+          this.offsetX = e.x - this.note.getBoundingClientRect().x;
+          this.offsetY = e.y - this.note.getBoundingClientRect().y;
+          this.note.addEventListener("mouseup", this.onMouseUpLeave);
+          this.note.addEventListener("mouseleave", this.onMouseUpLeave);
+          this.note.addEventListener("mousemove", this.onMouseMove);
+          this.note.classList.add("grabbing");
+        }
+
+        onMouseUpLeave(e) {
+          this.note.removeEventListener("mouseup", this.onMouseUpLeave);
+          this.note.removeEventListener("mouseleave", this.onMouseUpLeave);
+          this.note.removeEventListener("mousemove", this.onMouseMove);
+          this.note.classList.remove("grabbing");
+        }
+
+        onMouseMove(e) {
+          this.note.style.left = e.x - this.offsetX + "px";
+          this.note.style.top = e.y - this.offsetY + "px";
+        }
+      }
+
+      const n = new Note();
+      const n2 = new Note();
+    </script>
+  </body>
+</html>
