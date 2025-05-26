@@ -46,48 +46,62 @@
       .note textarea:focus {
         outline: none;
       }
+
+      button {
+        font-size: 32px;
+        width: 50px;
+        height: 50px;
+      }
     </style>
   </head>
   <body>
+    <button title="New note" onclick="onClickNewNote()">+</button>
+
     <script>
+      const notes = [];
       class Note {
         constructor() {
           this.onMouseDown = this.onMouseDown.bind(this);
           this.onMouseUpLeave = this.onMouseUpLeave.bind(this);
           this.onMouseMove = this.onMouseMove.bind(this);
-          this.note = document.createElement("div");
+          this.div = document.createElement("div");
           const textArea = document.createElement("textarea");
           textArea.addEventListener("mousedown", (e) => e.stopPropagation());
-          this.note.appendChild(textArea);
-          this.note.classList.add("note");
-          document.body.appendChild(this.note);
-          this.note.addEventListener("mousedown", this.onMouseDown);
+          this.div.appendChild(textArea);
+          this.div.classList.add("note");
+          document.body.appendChild(this.div);
+          this.div.addEventListener("mousedown", this.onMouseDown);
         }
 
         onMouseDown(e) {
-          this.offsetX = e.x - this.note.getBoundingClientRect().x;
-          this.offsetY = e.y - this.note.getBoundingClientRect().y;
-          this.note.addEventListener("mouseup", this.onMouseUpLeave);
-          this.note.addEventListener("mouseleave", this.onMouseUpLeave);
-          this.note.addEventListener("mousemove", this.onMouseMove);
-          this.note.classList.add("grabbing");
+          this.offsetX = e.x - this.div.getBoundingClientRect().x;
+          this.offsetY = e.y - this.div.getBoundingClientRect().y;
+          this.div.addEventListener("mouseup", this.onMouseUpLeave);
+          this.div.addEventListener("mouseleave", this.onMouseUpLeave);
+          this.div.addEventListener("mousemove", this.onMouseMove);
+          this.div.classList.add("grabbing");
+          this.div.style.zIndex = 1;
+          notes.forEach((note) => {
+            if (note !== this) note.div.style.zIndex = 0;
+          });
         }
 
         onMouseUpLeave(e) {
-          this.note.removeEventListener("mouseup", this.onMouseUpLeave);
-          this.note.removeEventListener("mouseleave", this.onMouseUpLeave);
-          this.note.removeEventListener("mousemove", this.onMouseMove);
-          this.note.classList.remove("grabbing");
+          this.div.removeEventListener("mouseup", this.onMouseUpLeave);
+          this.div.removeEventListener("mouseleave", this.onMouseUpLeave);
+          this.div.removeEventListener("mousemove", this.onMouseMove);
+          this.div.classList.remove("grabbing");
         }
 
         onMouseMove(e) {
-          this.note.style.left = e.x - this.offsetX + "px";
-          this.note.style.top = e.y - this.offsetY + "px";
+          this.div.style.left = e.x - this.offsetX + "px";
+          this.div.style.top = e.y - this.offsetY + "px";
         }
       }
 
-      const n = new Note();
-      const n2 = new Note();
+      function onClickNewNote() {
+        notes.push(new Note());
+      }
     </script>
   </body>
 </html>
