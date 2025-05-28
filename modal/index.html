@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Modal</title>
     <style>
-      * {
+      *:not(dialog) {
         margin: 0;
+      }
+      * {
         padding: 0;
         box-sizing: border-box;
       }
@@ -16,7 +18,7 @@
         padding: 10px;
       }
 
-      #modal {
+      .modal {
         width: 400px;
         height: 200px;
         text-align: center;
@@ -25,9 +27,8 @@
         background-color: white;
         background-image: linear-gradient(#fff, #ccc);
       }
-
-      body,
-      #backdrop {
+      body {
+        width: 100vw;
         height: 100vh;
       }
 
@@ -38,12 +39,16 @@
         top: 0;
         left: 0;
         width: 100vw;
+        height: 100vh;
       }
 
       #backdrop.open {
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+      ::backdrop {
+        background-color: rgba(0, 0, 0, 0.6);
       }
     </style>
   </head>
@@ -53,7 +58,7 @@
     <br />
     <button onclick="handleOpen()" id="open">Open (custom)</button>
     <div id="backdrop">
-      <div id="modal">
+      <div class="modal">
         <h1>Header</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim,
@@ -64,11 +69,23 @@
         <button onclick="handleClose()">Close</button>
       </div>
     </div>
+    <button onclick="handleDialogShow()">Show (native dialog)</button>
+    <dialog class="modal">
+      <h1>Header</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, laborum.
+        Non sequi minima illum officiis natus cumque voluptate reiciendis hic
+        distinctio amet alias quae numquam, explicabo praesentium, iste aliquam
+        harum.
+      </p>
+      <button onclick="handleDialogClose()">Close</button>
+    </dialog>
     <script>
       const backdrop = document.getElementById("backdrop");
       const open = document.getElementById("open");
       const close = document.getElementById("close");
       const dialog = document.getElementsByTagName("dialog")[0];
+      const container = document.querySelector(".container");
       function handleOpen() {
         backdrop.classList.add("open");
         open.setAttribute("disabled", true);
@@ -83,6 +100,14 @@
       function handleClose() {
         backdrop.classList.remove("open");
         open.removeAttribute("disabled");
+      }
+
+      function handleDialogShow() {
+        dialog.showModal();
+      }
+
+      function handleDialogClose() {
+        dialog.close();
       }
     </script>
   </body>
