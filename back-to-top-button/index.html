@@ -6,14 +6,24 @@
     <title>Back to top button</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        body {
+            background-color: lightgray;
+        }
+
         button {
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             position: fixed;
             bottom: 80px;
             right: 80px;
             z-index: 1;
             display:none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        i{
+            font-size: 24px;
         }
 
         div {
