@@ -1,0 +1,93 @@
+:root {
+    --border-radius: 5px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.password-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 500px;
+    background-color: pink;
+    border-radius: var(--border-radius);
+    position: fixed;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+}
+
+.password-container #password {
+    font-size: 1.2rem;
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    border: 2px black solid;
+    border-radius: var(--border-radius);
+    padding: 5px;
+}
+
+.input-container input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+#generate {
+    width: 200px;
+    height: 40px;
+    background-color: black;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+#generate:hover {
+    background-color: green;
+}
+
+#generate:active {
+    transform: scale(0.95);
+}
+
+#copy-to-clipboard {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+#copy-to-clipboard:hover {
+    opacity: 1;
+}
+
+.alert-container {
+    background-color: lightgreen;
+    border-radius: var(--border-radius);
+    padding: 10px;
+    width: 300px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: -300px;
+    bottom: 20px;  
+    transition: right 0.3s;
+}
+
+.alert-container.show {
+    right: 20px;
+}
