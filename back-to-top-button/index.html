@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Back to top button</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        button {
+            width: 40px;
+            height: 40px;
+            position: fixed;
+            bottom: 80px;
+            right: 80px;
+            z-index: 1;
+            display:none;
+        }
+
+        div {
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Back to top button</h1>
+    <div>
+        <p>Scroll down to see back to top button.</p>
+    </div>
+    <button id="backToTopBtn" title="Go to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script>
+    const backToTopBtn = document.getElementById("backToTopBtn");
+
+    window.onscroll = function() {
+        const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if(scrollTop >= 200) {
+            backToTopBtn.style.display = "block";
+        }
+        else {
+            backToTopBtn.style.display = "none";
+        }
+    }
+
+    backToTopBtn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
