@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hamburger menu example</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            background-color: green;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+        }
+
+        ul li {
+            padding: 10px;
+            background-color: lightgray;
+            cursor: pointer;
+        }
+
+        ul li:hover {
+            background-color: gray;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .burger-menu {
+            width: 35px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .bar {
+            width: 35px;
+            height: 5px;
+            background-color: black;
+            transition: 0.3s;
+        }
+
+        .bar:nth-child(n + 2) {
+            margin-top: 6px;
+        }
+
+        #bar1.expand {
+            transform: translate(0, 11px) rotate(-45deg);
+        }
+
+        #bar2.expand {
+            opacity: 0;
+        }
+
+        #bar3.expand {
+            transform: translate(0, -11px) rotate(45deg);
+        }
+
+        @media (max-width: 600px) {
+            .burger-menu {
+                display: block;
+            }
+
+            ul {
+                display: none;
+                flex-direction: column;
+            }
+
+            ul.show {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Burger menu example</h1>
+        <nav>
+            <div class="burger-menu">
+                <div class="bar" id="bar1"></div>
+                <div class="bar" id="bar2"></div>
+                <div class="bar" id="bar3"></div>
+            </div>
+            <ul>
+                <li><a href="#">Link1</a></li>
+                <li><a href="#">Link2</a></li>
+                <li><a href="#">Link3</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <p>Resize window to see top nav bar change</p>
+    </main>
+
+    <noscript><p><q>JavaScript is disabled in your browser. Please enable for burger menu functionality.</q></p></noscript>
+    <script>
+        document.getElementsByClassName("burger-menu")[0].addEventListener("click", ()=>{
+            document.querySelectorAll(".bar").forEach((bar)=> {
+                bar.classList.toggle("expand");
+            });
+
+            document.querySelector("nav ul").classList.toggle("show");
+        });
+    </script>
+</body>
+</html>
