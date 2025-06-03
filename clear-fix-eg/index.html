@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clearfix eg</title>
+    <style>
+        div {
+            border: 2px black solid;
+        }
+        img {
+            float: right;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+<body>
+    <h1>Modern clearfix</h1>
+    <div class="clearfix">
+        <img src="Original_Doge_meme.jpg" alt="doge meme">
+        <p>Dogecoin (/ˈdoʊ(d)ʒkɔɪn/ DOHJ-koyn or DOHZH-koyn,[2] Abbreviation: DOGE; sign: Ð) is a cryptocurrency created by software engineers Billy Markus and Jackson Palmer, who decided to create a payment system as a joke, making fun of the wild speculation in cryptocurrencies at the time.[3] It is considered both the first "meme coin", and more specifically the first "dog coin". Despite its satirical nature, some consider it a legitimate investment prospect. Dogecoin features the face of Kabosu from the "doge" meme as its logo and namesake.[4][5][6] It was introduced on December 6, 2013, and quickly developed its own online community, reaching a peak market capitalization of over US$85 billion[a] on May 5, 2021.[7] As of 2021, it is the sleeve sponsor[b] of Watford Football Club.[8]</p>
+    </div>
+</body>
+</html>
