@@ -6,9 +6,10 @@ const rightOperandEl = document.getElementById("right-operand");
 const operatorEl = document.getElementById("operator");
 
 const buttons = document.getElementsByTagName("button");
-[...buttons].forEach( (button)=> {
+Array.from(buttons).forEach( (button)=> {
     button.addEventListener('click', (e)=> {
-        switch(e.target.innerText) {
+        const target = e.target as HTMLElement;
+        switch(target.innerText) {
             case '0':
             case '1':
             case '2':
@@ -21,7 +22,7 @@ const buttons = document.getElementsByTagName("button");
             case '9':
             case '.':
                 {
-                    appendNumber(e.target.innerText);
+                    appendNumber(target.innerText);
                     updateScreen();
                     break;
                 }
@@ -30,7 +31,7 @@ const buttons = document.getElementsByTagName("button");
             case 'x':
             case '/':
                 {
-                    setOperator(e.target.innerText);
+                    setOperator(target.innerText);
                     updateScreen();
                     break;
                 }
@@ -48,7 +49,7 @@ const buttons = document.getElementsByTagName("button");
     });
 });
 
-function appendNumber(number) {
+function appendNumber(number: string) {
     if(operator === '') {
         if(number === '.' && (leftOperand.includes('.') || leftOperand === '')) return;
         leftOperand += number;
@@ -65,7 +66,7 @@ function updateScreen() {
     operatorEl.innerText = operator;
 }
 
-function setOperator(op) {
+function setOperator(op: string) {
     if(rightOperand !== '' || leftOperand === '') {
         return;
     }
@@ -75,7 +76,7 @@ function setOperator(op) {
     leftOperand = leftOperand;
 }
 
-function trimTrailingDot(str) {
+function trimTrailingDot(str: string) {
     if(str.endsWith('.')){
         return str.slice(0, -1);
     }

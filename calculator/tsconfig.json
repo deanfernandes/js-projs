@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "outDir": "./build",
+    "allowJs": true,
+    "noEmitOnError": true,
+    "target": "es6",
+    "noImplicitAny": true
+  },
+  "include": ["./src/**/*"]
+}
