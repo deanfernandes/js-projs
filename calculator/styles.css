@@ -1,0 +1,137 @@
+:root {
+    --border-radius: 5px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 100px;
+}
+
+.calculator-container {
+    display: grid;
+    grid-template-columns: repeat(5, 50px);
+    grid-template-rows: repeat(7, 50px);
+    grid-template-areas:
+    "screen screen screen screen screen"
+    "screen screen screen screen screen"
+    "clear . . . ."
+    "seven eight nine divide ."
+    "four five six multiply ."
+    "one two three subtract equals"
+    "zero dot . add equals"
+    ;
+    width: calc((5 * 50px) + (4*5px));
+    height: calc((7 * 50px) + (6*5px));
+    border-radius: var(--border-radius);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.25);
+    gap: 5px;
+}
+
+.calculator-container #screen {
+    /*
+    grid-column-start: 1;
+    grid-column-end: -1;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    */
+    grid-area: screen;
+    border: 1px lightgray solid;
+    border-radius: var(--border-radius);
+    font-size: 2rem;
+    text-align: end;
+}
+
+.calculator-container #equals {
+    /*
+    grid-row: span 2;
+    grid-column: 5;
+    */
+    background-color: lightsalmon;
+    color: white;
+}
+
+.calculator-container>button {
+    font-weight: inherit;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+.calculator-container>button.number {
+    background-color: lightgray;
+}
+
+.calculator-container #zero {
+    grid-area: zero;
+}
+
+.calculator-container #one {
+    grid-area: one;
+}
+
+.calculator-container #two {
+    grid-area: two;
+}
+
+.calculator-container #three {
+    grid-area: three;
+}
+
+.calculator-container #four {
+    grid-area: four;
+}
+
+.calculator-container #five {
+    grid-area: five;
+}
+
+.calculator-container #six {
+    grid-area: six;
+}
+
+.calculator-container #seven {
+    grid-area: seven;
+}
+
+.calculator-container #eight {
+    grid-area: eight;
+}
+
+.calculator-container #nine {
+    grid-area: nine;
+}
+
+.calculator-container #dot {
+    grid-area: dot;
+}
+
+.calculator-container #clear {
+    grid-area: clear;
+}
+
+.calculator-container #add {
+    grid-area: add;
+}
+
+.calculator-container #subtract {
+    grid-area: subtract;
+}
+
+.calculator-container #divide {
+    grid-area: divide;
+}
+
+.calculator-container #multiply {
+    grid-area: multiply;
+}
+
+.calculator-container #equals {
+    grid-area: equals;
+}
