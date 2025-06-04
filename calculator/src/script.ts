@@ -60,13 +60,13 @@ function appendNumber(number: string) {
     }
 }
 
-function updateScreen() {
+function updateScreen(): void {
     leftOperandEl.innerText = leftOperand;
     rightOperandEl.innerText = rightOperand;
     operatorEl.innerText = operator;
 }
 
-function setOperator(op: string) {
+function setOperator(op: string): void {
     if(rightOperand !== '' || leftOperand === '') {
         return;
     }
@@ -76,14 +76,14 @@ function setOperator(op: string) {
     leftOperand = leftOperand;
 }
 
-function trimTrailingDot(str: string) {
+function trimTrailingDot(str: string): string {
     if(str.endsWith('.')){
         return str.slice(0, -1);
     }
     return str;
 }
 
-function clearScreen() {
+function clearScreen(): void {
     leftOperand = '';
     rightOperand = '';
     operator = '';
@@ -92,7 +92,7 @@ function clearScreen() {
     operatorEl.innerText = '';
 }
 
-function calculate() {
+function calculate(): void {
     let equation = leftOperand + operator + rightOperand;
     equation = equation.replace(/x/i, '*');
     leftOperand = eval(equation);

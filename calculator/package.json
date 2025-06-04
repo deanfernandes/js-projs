@@ -5,12 +5,18 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rm -rf build"
+    "clean": "rm -rf build",
+    "type-check": "tsc --noEmit",
+    "build": "npm run type-check && babel src --out-dir build --extensions \".ts\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "tsc": "^2.0.4"
+    "@babel/cli": "^7.27.2",
+    "@babel/core": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-typescript": "^7.27.1",
+    "typescript": "^5.8.3"
   }
 }
